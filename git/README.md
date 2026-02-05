@@ -151,16 +151,14 @@ git merge feature-branch
 git push
 ```
 ### Merge Conflicts
-Understanding Merge Conflicts
+#### Understanding Merge Conflicts
 Merge conflicts occur when Git cannot automatically resolve differences between branches.
-
-Resolving Merge Conflicts
-
-1. Identify conflicted files:
+#### Resolving Merge Conflicts
+#### 1. Identify conflicted files:
     ```shell
     git status
     ```
-2. Open conflicted files:
+#### 2. Open conflicted files:
     Look for conflict markers
     <<<<<<< HEAD
     Your current branch code
@@ -168,10 +166,10 @@ Resolving Merge Conflicts
     Incoming branch code
     ">>>>>>> branch-name"
 
-3. Edit files to keep desired code
+#### 3. Edit files to keep desired code
     Remove conflict markers (<<<<<<<, =======, >>>>>>>)
 
-4. Mark as resolved and commit
+#### 4. Mark as resolved and commit
 
     ```shell
     git add .
