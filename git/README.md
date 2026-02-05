@@ -3,23 +3,17 @@
 
 This guide explains the basic Git workflow for working with GitHub and GitLab, including repository creation, local work, and pushing changes.
 
-Table of Contents
+## Table of Contents
 GitHub setup
-
 GitLab setup
-
 Branching & Merging
-
 Merge Conflicts
-
 Git Reset
-
 Git Rebase
-
 Git Stash
 ## GitHub Workflow
 
-1. Create a repository on GitHub: 
+### Create a repository on GitHub: 
     1. Go to GitHub → New repository
     2. Choose a repository name
     Do NOT add:
@@ -27,29 +21,29 @@ Git Stash
         .gitignore
     3. Click Create repository
 
-2. Clone the repository to your computer
+### Clone the repository to your computer
 
 ```shell
 git clone https://github.com/USERNAME REPO.git
 ```
 
-3. Work locally
+### Work locally
   Edit files
   Add or delete files
 
-4. Push changes to GitHub
+### Push changes to GitHub
 ```shell
 git add .
 git commit -m "Short clear message"
 git push
 ```
 
-5. Next time you work
+### Next time you work
 ```shell
 git pull
 ```
 
-# edit files
+### edit files
 
 ```shell
 git add .
@@ -57,7 +51,7 @@ git commit -m "What you changed"
 git push
 ```
 
-6. One-time setup (folder already exists locally)
+### One-time setup (folder already exists locally)
 ```shell
 cd your-folder
 git init
@@ -70,7 +64,7 @@ git push -u origin main
 
 ## GitLab Workflow
 
-1. Create a repository on GitLab
+### Create a repository on GitLab
 
   1. Go to GitLab → New project
   2. Select Blank project
@@ -80,18 +74,18 @@ git push -u origin main
       .gitignore
   4. Click Create project
 
-2. Clone the repository to your computer
+### Clone the repository to your computer
 
 ```shell
 git clone https://gitlab.com/USERNAME/REPO.git
 ```
 
-3. Work locally
+### Work locally
 
   Edit files
   Add or delete files
 
-4. Push changes to GitLab
+### Push changes to GitLab
 
 ```shell
 git add .
@@ -99,13 +93,13 @@ git commit -m "Short clear message"
 git push
 ```
 
-5. Next time you work
+### Next time you work
 
 ```shell
 git pull
 ```
 
-# edit files
+### edit files
 
 ```shell
 git add .
@@ -113,7 +107,7 @@ git commit -m "What you changed"
 git push
 ```
 
-6. One-time setup (folder already exists locally)
+### One-time setup (folder already exists locally)
 
 ```shell
 cd your-folder
@@ -126,7 +120,7 @@ git push -u origin main
 ```
 
 ## Branching & Merging
-# Creating and Switching Branches
+### Creating and Switching Branches
 
 ```shell
 # Create a new branch
@@ -144,7 +138,7 @@ git branch
 # Delete a branch (local)
 git branch -d feature-branch
 ```
-# Merging Branches
+### Merging Branches
 
 ```shell
 # Switch to main branch
@@ -156,7 +150,7 @@ git merge feature-branch
 # Push merged changes
 git push
 ```
-# Merge Conflicts
+### Merge Conflicts
 Understanding Merge Conflicts
 Merge conflicts occur when Git cannot automatically resolve differences between branches.
 
@@ -184,7 +178,7 @@ Resolving Merge Conflicts
     git commit -m "Resolved merge conflict"
     ```
 ## Git Reset
-# Types of Reset
+### Types of Reset
     ```shell
     # Soft reset - moves HEAD but keeps changes staged
     git reset --soft HEAD~1
@@ -201,7 +195,7 @@ Resolving Merge Conflicts
     # Reset to specific commit
     git reset --hard commit-hash
     ```
-# Common Reset Scenarios
+### Common Reset Scenarios
     ```shell
     # Undo last commit but keep changes
     git reset --soft HEAD~1
@@ -216,7 +210,7 @@ Resolving Merge Conflicts
     git checkout -- filename.txt
     ```
 ## Git Rebase
-# Basic Rebase
+### Basic Rebase
 
     ```shell
     # Update feature branch with main branch changes
@@ -234,7 +228,7 @@ Resolving Merge Conflicts
     ```
 
 ## Git Stash
-# Stashing Changes
+### Stashing Changes
     ```shell
     # Stash uncommitted changes
     git stash
@@ -263,7 +257,7 @@ Resolving Merge Conflicts
     # Create a branch from stash
     git stash branch new-branch-name
     ```
-# Stash Options
+### Stash Options
     ```shell
     # Stash including untracked files
     git stash -u
