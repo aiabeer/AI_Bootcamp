@@ -3,40 +3,62 @@
 
 This guide explains the basic Git workflow for working with GitHub and GitLab, including repository creation, local work, and pushing changes.
 
+Table of Contents
+GitHub setup
 
+GitLab setup
 
+Branching & Merging
+
+Merge Conflicts
+
+Git Reset
+
+Git Rebase
+
+Git Stash
 ## GitHub Workflow
 
 1. Create a repository on GitHub: 
-    Go to GitHub → New repository
-    Choose a repository name
+    1. Go to GitHub → New repository
+    2. Choose a repository name
     Do NOT add:
         README
         .gitignore
-
-Click Create repository:
+    3. Click Create repository
 
 2. Clone the repository to your computer
 
+```shell
 git clone https://github.com/USERNAME REPO.git
+```
 
 3. Work locally
   Edit files
   Add or delete files
 
 4. Push changes to GitHub
+```shell
 git add .
 git commit -m "Short clear message"
 git push
+```
 
 5. Next time you work
+```shell
 git pull
+```
+
 # edit files
+
+```shell
 git add .
 git commit -m "What you changed"
 git push
+```
 
 6. One-time setup (folder already exists locally)
+```shell
 cd your-folder
 git init
 git remote add origin https://github.com/USERNAME/REPO.git
@@ -44,25 +66,25 @@ git branch -M main
 git add .
 git commit -m "Initial commit"
 git push -u origin main
+```
 
 ## GitLab Workflow
 
 1. Create a repository on GitLab
 
-  Go to GitLab → New project
-  Select Blank project
-    Choose a project name
+  1. Go to GitLab → New project
+  2. Select Blank project
+  3. Choose a project name
     Do NOT initialize with:
       README
       .gitignore
-    
-  
-  Click Create project
+  4. Click Create project
 
 2. Clone the repository to your computer
 
+```shell
 git clone https://gitlab.com/USERNAME/REPO.git
-
+```
 
 3. Work locally
 
@@ -70,18 +92,30 @@ git clone https://gitlab.com/USERNAME/REPO.git
   Add or delete files
 
 4. Push changes to GitLab
+
+```shell
 git add .
 git commit -m "Short clear message"
 git push
+```
 
 5. Next time you work
+
+```shell
 git pull
+```
+
 # edit files
+
+```shell
 git add .
 git commit -m "What you changed"
 git push
+```
 
 6. One-time setup (folder already exists locally)
+
+```shell
 cd your-folder
 git init
 git remote add origin https://gitlab.com/USERNAME/REPO.git
@@ -89,12 +123,174 @@ git branch -M main
 git add .
 git commit -m "Initial commit"
 git push -u origin main
+```
 
-## Notes
+## Branching & Merging
+# Creating and Switching Branches
 
- 1. Replace USERNAME and REPO with your actual values.
- 2. Use clear, meaningful commit messages.
- 3. Always run git pull before starting new work.
+```shell
+# Create a new branch
+git branch feature-branch
+
+# Switch to the new branch
+git checkout feature-branch
+
+# Create and switch in one command
+git checkout -b feature-branch
+
+# List all branches
+git branch
+
+# Delete a branch (local)
+git branch -d feature-branch
+```
+# Merging Branches
+
+```shell
+# Switch to main branch
+git checkout main
+
+# Merge feature-branch into main
+git merge feature-branch
+
+# Push merged changes
+git push
+```
+# Merge Conflicts
+Understanding Merge Conflicts
+Merge conflicts occur when Git cannot automatically resolve differences between branches.
+
+Resolving Merge Conflicts
+
+1. Identify conflicted files:
+    ```shell
+    git status
+    ```
+2. Open conflicted files:
+    Look for conflict markers
+    <<<<<<< HEAD
+    Your current branch code
+    =======
+    Incoming branch code
+    ">>>>>>> branch-name"
+
+3. Edit files to keep desired code
+    Remove conflict markers (<<<<<<<, =======, >>>>>>>)
+
+4. Mark as resolved and commit
+
+    ```shell
+    git add .
+    git commit -m "Resolved merge conflict"
+    ```
+## Git Reset
+# Types of Reset
+    ```shell
+    # Soft reset - moves HEAD but keeps changes staged
+    git reset --soft HEAD~1
+
+    # Mixed reset (default) - moves HEAD, unstages changes
+    git reset --mixed HEAD~1
+
+    # Hard reset - moves HEAD, discards all changes
+    git reset --hard HEAD~1
+
+    # Reset specific file
+    git reset HEAD filename.txt
+
+    # Reset to specific commit
+    git reset --hard commit-hash
+    ```
+# Common Reset Scenarios
+    ```shell
+    # Undo last commit but keep changes
+    git reset --soft HEAD~1
+
+    # Undo last commit and unstage changes
+    git reset HEAD~1
+
+    # Discard all local changes
+    git reset --hard HEAD
+
+    # Discard specific file changes
+    git checkout -- filename.txt
+    ```
+## Git Rebase
+# Basic Rebase
+
+    ```shell
+    # Update feature branch with main branch changes
+    git checkout feature-branch
+    git rebase main
+
+    # Continue after resolving conflicts
+    git rebase --continue
+
+    # Abort rebase
+    git rebase --abort
+
+    # Interactive rebase (last 3 commits)
+    git rebase -i HEAD~3
+    ```
+
+## Git Stash
+# Stashing Changes
+    ```shell
+    # Stash uncommitted changes
+    git stash
+
+    # Stash with message
+    git stash save "Work in progress"
+
+    # List stashes
+    git stash list
+
+    # Apply latest stash (keeps stash)
+    git stash apply
+
+    # Apply specific stash
+    git stash apply stash@{2}
+
+    # Apply and remove from stash list
+    git stash pop
+
+    # Remove specific stash
+    git stash drop stash@{1}
+
+    # Clear all stashes
+    git stash clear
+
+    # Create a branch from stash
+    git stash branch new-branch-name
+    ```
+# Stash Options
+    ```shell
+    # Stash including untracked files
+    git stash -u
+
+    # Stash including ignored files
+    git stash -a
+
+    # View stash content
+    git stash show stash@{0}
+
+    # View full diff of stash
+    git stash show -p stash@{0}
+    ```
+
+## Best Practices
+1. Commit Often: Small, logical commits
+
+2. Write Clear Messages: Use imperative mood
+
+3. Pull Before Push: Always pull latest changes
+
+4. Use Branches: Keep main branch stable
+
+5. Review Before Merge: Check changes before merging
+
+6. Backup Before Reset: Use git stash or create backup branches
+
 
 ## Usefull links 
 
